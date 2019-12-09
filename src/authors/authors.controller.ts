@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Body, Param, ParseIntPipe, UsePipes, ValidationPipe, Delete, Patch, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, ParseIntPipe, UsePipes, ValidationPipe, Delete, Patch, Query, UseGuards } from '@nestjs/common';
 import { AuthorsService } from './authors.service';
 import { Author } from './author.entity';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { GetAuthorsFilterDto } from './dto/get-authors-filter.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('authors')
+@UseGuards(AuthGuard())
 export class AuthorsController {
     constructor(private authorsService: AuthorsService) {}
 
